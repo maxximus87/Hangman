@@ -9,4 +9,21 @@ letters = []
 letters = word.split(//)
 progress = ["_" * letters.length]
 puts progress
-puts "Player 2, please make a guess: "
+puts "Player 2, please guess a letter: "
+
+while tries < 10 || letters.length == 0
+	letter = gets.chomp
+	if letters.include? letter
+		ind = letters.index(letter)
+		progress.insert(ind, letter)
+		progress.delete("_ ")
+		letters.delete(letter)
+		puts "You got a letter!"
+		progress = "_ " * letters.length
+		puts progress
+	else
+		puts "Try again."
+		tries += 1
+		puts "You have " + (10 - tries).to_s + " left"
+	end
+end
